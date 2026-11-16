@@ -1,0 +1,54 @@
+{
+  "status": "DONE_WITH_CONCERNS",
+  "checks": [
+    {
+      "name": "Windows",
+      "ok": true,
+      "detail": "win32"
+    },
+    {
+      "name": "node",
+      "ok": true,
+      "detail": "v24.18.0"
+    },
+    {
+      "name": "pwsh",
+      "ok": true,
+      "detail": "PowerShell 7.6.9"
+    },
+    {
+      "name": "git",
+      "ok": true,
+      "detail": "git version 2.55.0.windows.3"
+    },
+    {
+      "name": "vibe",
+      "ok": true,
+      "detail": "vibe 3.1.2"
+    },
+    {
+      "name": "vibe flags",
+      "ok": true,
+      "detail": "--version --workdir --continue --resume --setup --prompt --output --max-turns --max-price --max-tokens --time-limit --prompt-file --system-prompt-file --output-dir --agent --model --auto-approve --yolo --smart-approve --enabled-tools --disabled-tools --trust --worktree --add-dir --check-upgrade --help"
+    },
+    {
+      "name": "RSC",
+      "ok": true,
+      "detail": "catalogVersion=4.1.7"
+    },
+    {
+      "name": "Git repository",
+      "ok": true,
+      "detail": "C:/Users/luis_/OneDrive/Documentos/rsc-vibe-bridge"
+    },
+    {
+      "name": "bridge init",
+      "ok": true,
+      "detail": "local configuration present"
+    }
+  ],
+  "notes": [
+    "Authentication and model entitlement not probed (no inference).",
+    "RSC hooks for Codex are not installed into Vibe; profiles carry instructions, not an OS sandbox."
+  ]
+}

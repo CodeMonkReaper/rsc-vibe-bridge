@@ -1,0 +1,27 @@
+
+> rsc-vibe-bridge@1.0.0 test
+> node --test
+
+✔ dispatcher records model, output, terminal states and releases slots (95.4895ms)
+✔ spawn errors and nonzero exit do not leak reservations (109.5869ms)
+✔ classification uses exit evidence before self-reported success (0.6825ms)
+✔ model evidence uses exported presets and never masks failures or missing context (160.2787ms)
+✔ dispatch refuses a modified or missing selected profile and protected branch before spawn (38.1761ms)
+✔ final record survives history rollover beyond 100 runs (989.4938ms)
+✔ exact tier routing and help capability validation (2.83ms)
+✔ init is idempotent and preserves original governance and config (57.5264ms)
+✔ init rejects escaping symlink directories and missing governance (9.4916ms)
+✔ state enforces limit, duplicate task and conservative orphan recovery (67.9874ms)
+✔ cross-process admission never grants more than two slots (261.2696ms)
+✔ malformed state and abandoned lock fail closed (109.1286ms)
+✔ orphan slot survives live child and is recovered only after both processes die (52.8137ms)
+warning: in the working copy of '.gitignore', LF will be replaced by CRLF the next time Git touches it
+✔ worktree refuses main and dirty root; preserves unmerged work (1706.1059ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1844.1799
