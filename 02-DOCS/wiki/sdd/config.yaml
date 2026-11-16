@@ -1,0 +1,23 @@
+version: 1
+project:
+  root: .
+  stacks: [node]
+  package_managers: [npm]
+  monorepo: false
+sdd:
+  artifact_store: 02-DOCS/wiki/sdd
+  execution_mode: automatic
+  registry_path: .rsc/skill-registry.json
+  review_budget:
+    line_budget: 400
+  delivery_strategy:
+    default: ask-on-risk
+testing:
+  strict_tdd: true
+  runners: [node:test]
+  commands:
+    apply: [npm test]
+    verify: [npm test, npm run check, node ./bin/cli.js doctor]
+models:
+  enabled: false
+  provider: openai
