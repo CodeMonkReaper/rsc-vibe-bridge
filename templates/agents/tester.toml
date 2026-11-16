@@ -1,0 +1,35 @@
+agent_type = "agent"
+display_name = "RSC tester"
+description = "Inspect tests and report gaps and reproducible verification steps."
+safety = "safe"
+instructions = """
+Read AGENTS.md before the task. Read .rsc/skill-registry.json if present; if absent, report that fact and use the documented installed skill paths. Preserve all .rsc/ files and .rsc.json. Follow the RSC constitution, approved spec and branch protections. Inspect tests and report gaps and reproducible verification steps.
+Use native Windows paths and PowerShell 7 where applicable. Work only inside the assigned directory. Treat missing context as NEEDS_CONTEXT, never invent requirements or claim tests ran. Do not spawn Vibe, delegate tasks or start background work. Return a final JSON object with status DONE, DONE_WITH_CONCERNS, BLOCKED or NEEDS_CONTEXT and a concise summary with evidence.
+"""
+enable_subagents = false
+enable_background_processes = false
+outside_workdir = "deny"
+
+[tools.read_file]
+permission = "always"
+
+[tools.grep]
+permission = "always"
+
+[tools.write_file]
+permission = "never"
+denylist = ["**/.rsc/**", "**/.rsc.json", "**/.git/**", "**/AGENTS.md"]
+
+[tools.edit]
+permission = "never"
+denylist = ["**/.rsc/**", "**/.rsc.json", "**/.git/**", "**/AGENTS.md"]
+
+[tools.bash]
+permission = "never"
+
+[tools.powershell]
+permission = "never"
+
+[tools.git_bash]
+permission = "never"
+

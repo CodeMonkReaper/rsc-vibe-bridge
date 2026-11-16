@@ -1,0 +1,6 @@
+node_modules/
+.worktrees/
+.test-tmp/
+*.tgz
+.vibe/
+01-TOOLS/vibe-bridge/runs/

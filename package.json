@@ -1,0 +1,14 @@
+{
+  "name": "rsc-vibe-bridge",
+  "version": "1.0.0",
+  "description": "Bounded native Windows Vibe dispatch for RSC-governed projects",
+  "type": "module",
+  "bin": { "rsc-vibe": "./bin/cli.js" },
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "test": "node --test",
+    "check": "node scripts/check.js"
+  },
+  "files": ["bin/", "lib/", "templates/", "README.md"],
+  "license": "MIT"
+}
