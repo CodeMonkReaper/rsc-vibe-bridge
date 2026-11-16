@@ -1,5 +1,14 @@
 # Entrega — rsc-vibe-bridge 1.0.0
 
+> Actualización 2026-11-16: los cuatro modelos ya respondieron en pruebas reales,
+> con IDs efectivos coincidentes. El parser ahora reconoce bloques JSON finales
+> después de texto; balanced/debug se verificaron offline usando sus respuestas
+> guardadas, sin más inferencia. Suite actual: **16/16 pruebas**, sintaxis correcta
+> y revisión independiente aprobada. El archivo npm fue reconstruido con esta
+> corrección; la metadata y el resumen de 14 pruebas siguientes corresponden a la
+> entrega inicial. Detalles: [corrección](02-DOCS/wiki/ftd/final-response-json.md).
+> Archivo actual: 12.794 bytes, SHA-1 `6b66318f41c3a6da852f85e57046e4eae7e902bf`.
+
 **Estado: DONE_WITH_CONCERNS.** Implementación local terminada y verificada.
 Rama: `feat/rsc-vibe-bridge`. No hay remoto, publicación ni merge.
 
@@ -90,6 +99,7 @@ test/dispatcher.test.js
 01-TOOLS/vibe-bridge/README.md
 01-TOOLS/vibe-bridge/models.json
 02-DOCS/wiki/index.md
+02-DOCS/wiki/ftd/final-response-json.md
 02-DOCS/wiki/sdd/config.yaml
 02-DOCS/wiki/sdd/decisions.md
 02-DOCS/wiki/sdd/specs/rsc-vibe-bridge.md

@@ -8,3 +8,4 @@
 - [Consistency analysis](sdd/analysis/rsc-vibe-bridge.md)
 - [Review record](sdd/reviews/rsc-vibe-bridge.md)
 - [Verification](sdd/verifications/rsc-vibe-bridge-2026-11-16.md)
+- [Final response JSON correction](ftd/final-response-json.md)

@@ -9,6 +9,30 @@ import { init } from '../lib/init.js';
 import { MODELS } from '../lib/router.js';
 import { dispatch, classify, responseStatus } from '../lib/dispatcher.js';
 
+test('response status accepts prose followed by final JSON without accepting stale examples', () => {
+  const reply = text => [{ role: 'assistant', content: [{ type: 'text', text }] }];
+  assert.equal(responseStatus(reply('Conectividad confirmada.\n\n```json\n{"status":"DONE","summary":"Sin herramientas"}\n```')), 'DONE');
+  assert.equal(responseStatus(reply('Estado previo:\n```json\n{"status":"DONE"}\n```\nEstado final:\n```json\n{"status":"NEEDS_CONTEXT"}\n```')), 'NEEDS_CONTEXT');
+  assert.equal(responseStatus(reply('Texto\r\n```JSON\r\n{"status":"BLOCKED"}\r\n```\r\n')), 'BLOCKED');
+  assert.equal(responseStatus(reply('Texto\n```json\n{"status":"DONE"}\n```\nPero la tarea no terminó.')), null);
+  assert.equal(responseStatus(reply('Texto\n```json\n{"status":"DONE"}\n```\n```json\n{bad}\n```')), null);
+  assert.equal(responseStatus(reply('Texto\n```json\n{"status":"UNKNOWN"}\n```')), null);
+  assert.equal(responseStatus(reply('Texto\n```javascript\n{"status":"DONE"}\n```')), null);
+  assert.equal(responseStatus(null), null);
+  assert.equal(responseStatus({ content: 'null' }), null);
+});
+
+test('dispatch preserves failures even when prose ends with valid success JSON', async t => {
+  const dir = await root(t), stateDir = await temp(t); await init(dir);
+  const output = JSON.stringify([{ role: 'assistant', content: [{ type: 'text', text: 'Respuesta.\n```json\n{"status":"DONE"}\n```' }] }]);
+  for (const [code, expected] of [[0, 'DONE'], [1, 'BLOCKED'], [3, 'DONE_WITH_CONCERNS']]) {
+    const result = await dispatch({ cwd: dir, task: `fenced-${code}`, tier: 'light', prompt: 'x' }, {
+      state: new StateStore(stateDir), exec: fakeExec, spawn: fakeSpawn(code, output)
+    });
+    assert.equal(result.status, expected);
+  }
+});
+
 test('dispatcher records model, output, terminal states and releases slots', async t => {
   const dir = await root(t), stateDir = await temp(t);
   await init(dir);
