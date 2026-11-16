@@ -1,0 +1,6 @@
+{
+  "heavy": "mistral-large-4",
+  "balanced": "zai-glm-5-3-flash",
+  "light": "mistral-small-2603",
+  "debug": "zai-glm-5-3"
+}
