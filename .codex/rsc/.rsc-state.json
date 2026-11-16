@@ -1,0 +1,251 @@
+{
+  "skills": {
+    "analyze": {
+      "files": [
+        "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.codex\\rsc\\analyze"
+      ],
+      "base": "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\skills\\analyze"
+    },
+    "asdd": {
+      "files": [
+        "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.codex\\rsc\\asdd"
+      ],
+      "base": "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\skills\\asdd"
+    },
+    "automation-strategy": {
+      "files": [
+        "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.codex\\rsc\\automation-strategy"
+      ],
+      "base": "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\skills\\automation-strategy"
+    },
+    "clarify": {
+      "files": [
+        "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.codex\\rsc\\clarify"
+      ],
+      "base": "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\skills\\clarify"
+    },
+    "connect-tool": {
+      "files": [
+        "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.codex\\rsc\\connect-tool"
+      ],
+      "base": "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\skills\\connect-tool"
+    },
+    "constitution": {
+      "files": [
+        "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.codex\\rsc\\constitution"
+      ],
+      "base": "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\skills\\constitution"
+    },
+    "debug": {
+      "files": [
+        "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.codex\\rsc\\debug"
+      ],
+      "base": "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\skills\\debug"
+    },
+    "decision-challenge": {
+      "files": [
+        "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.codex\\rsc\\decision-challenge"
+      ],
+      "base": "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\skills\\decision-challenge"
+    },
+    "deprecation": {
+      "files": [
+        "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.codex\\rsc\\deprecation"
+      ],
+      "base": "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\skills\\deprecation"
+    },
+    "design": {
+      "files": [
+        "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.codex\\rsc\\design"
+      ],
+      "base": "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\skills\\design"
+    },
+    "fable-operator": {
+      "files": [
+        "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.codex\\rsc\\fable-operator"
+      ],
+      "base": "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\skills\\fable-operator"
+    },
+    "ftd": {
+      "files": [
+        "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.codex\\rsc\\ftd"
+      ],
+      "base": "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\skills\\ftd"
+    },
+    "harness": {
+      "files": [
+        "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.codex\\rsc\\harness"
+      ],
+      "base": "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\skills\\harness"
+    },
+    "idea-refinement": {
+      "files": [
+        "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.codex\\rsc\\idea-refinement"
+      ],
+      "base": "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\skills\\idea-refinement"
+    },
+    "implement": {
+      "files": [
+        "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.codex\\rsc\\implement"
+      ],
+      "base": "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\skills\\implement"
+    },
+    "init": {
+      "files": [
+        "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.codex\\rsc\\init"
+      ],
+      "base": "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\skills\\init"
+    },
+    "orient": {
+      "files": [
+        "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.codex\\rsc\\orient"
+      ],
+      "base": "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\skills\\orient"
+    },
+    "parallel": {
+      "files": [
+        "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.codex\\rsc\\parallel"
+      ],
+      "base": "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\skills\\parallel"
+    },
+    "plan": {
+      "files": [
+        "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.codex\\rsc\\plan"
+      ],
+      "base": "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\skills\\plan"
+    },
+    "review": {
+      "files": [
+        "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.codex\\rsc\\review"
+      ],
+      "base": "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\skills\\review"
+    },
+    "sdd-init": {
+      "files": [
+        "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.codex\\rsc\\sdd-init"
+      ],
+      "base": "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\skills\\sdd-init"
+    },
+    "security-audit": {
+      "files": [
+        "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.codex\\rsc\\security-audit"
+      ],
+      "base": "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\skills\\security-audit"
+    },
+    "ship": {
+      "files": [
+        "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.codex\\rsc\\ship"
+      ],
+      "base": "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\skills\\ship"
+    },
+    "simplify-code": {
+      "files": [
+        "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.codex\\rsc\\simplify-code"
+      ],
+      "base": "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\skills\\simplify-code"
+    },
+    "source-grounded-development": {
+      "files": [
+        "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.codex\\rsc\\source-grounded-development"
+      ],
+      "base": "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\skills\\source-grounded-development"
+    },
+    "specify": {
+      "files": [
+        "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.codex\\rsc\\specify"
+      ],
+      "base": "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\skills\\specify"
+    },
+    "suggest": {
+      "files": [
+        "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.codex\\rsc\\suggest"
+      ],
+      "base": "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\skills\\suggest"
+    },
+    "tasks": {
+      "files": [
+        "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.codex\\rsc\\tasks"
+      ],
+      "base": "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\skills\\tasks"
+    },
+    "tidy": {
+      "files": [
+        "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.codex\\rsc\\tidy"
+      ],
+      "base": "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\skills\\tidy"
+    },
+    "unslop": {
+      "files": [
+        "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.codex\\rsc\\unslop"
+      ],
+      "base": "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\skills\\unslop"
+    },
+    "ux": {
+      "files": [
+        "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.codex\\rsc\\ux"
+      ],
+      "base": "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\skills\\ux"
+    },
+    "verify": {
+      "files": [
+        "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.codex\\rsc\\verify"
+      ],
+      "base": "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\skills\\verify"
+    },
+    "worktrees": {
+      "files": [
+        "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.codex\\rsc\\worktrees"
+      ],
+      "base": "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\skills\\worktrees"
+    }
+  },
+  "agents": [
+    "developer",
+    "finding-verifier",
+    "refuter-correctness",
+    "refuter-security",
+    "refuter-tests"
+  ],
+  "agentCollisions": [],
+  "agentsKept": [],
+  "explicitAgents": [],
+  "memory": {
+    "mode": "full",
+    "reason": "hook-trust-required",
+    "paths": [
+      "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\session-memory-core.mjs",
+      "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\session-memory-adapter.mjs",
+      "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\session-memory.mjs",
+      "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.codex\\hooks.json"
+    ]
+  },
+  "update": {
+    "mode": "hook"
+  },
+  "knowledge": {
+    "mode": "wired",
+    "reason": null,
+    "paths": [
+      "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\knowledge-sync.mjs",
+      "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.rsc\\trunk-policy.mjs",
+      "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.codex\\hooks.json"
+    ]
+  },
+  "gitPermissions": {
+    "mode": "wired",
+    "path": "C:\\Users\\luis_\\OneDrive\\Documentos\\rsc-vibe-bridge\\.codex\\rules\\rsc-git.rules"
+  },
+  "policy": {
+    "baseAgents": true,
+    "alwaysOn": true,
+    "codeHooks": true,
+    "dangerGuard": true,
+    "laneGate": true,
+    "gitmojiGuard": false,
+    "memory": true,
+    "context7": false
+  },
+  "commands": [],
+  "commandCollisions": [],
+  "version": "4.1.7"
+}
