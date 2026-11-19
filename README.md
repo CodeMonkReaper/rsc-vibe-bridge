@@ -15,7 +15,7 @@ Desde la carpeta del repositorio clonado (o directamente desde GitHub):
 npm link
 
 # Opción 2: directamente desde GitHub en un solo comando
-npm install -g git+https://github.com/<tu-usuario>/rsc-vibe-bridge.git
+npm install -g git+https://github.com/CodeMonkReaper/rsc-vibe-bridge.git
 ```
 
 *(Sin instalación global, todos los comandos funcionan igualmente con `node <ruta-al-repo>\bin\cli.js <comando>`.)*
