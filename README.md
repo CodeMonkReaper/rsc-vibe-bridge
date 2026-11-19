@@ -1,113 +1,125 @@
 # rsc-vibe-bridge
 
-Local npm CLI for RSC projects on native Windows 11 / PowerShell 7. Node >=18,
-Git for Windows and an already authenticated official `vibe` are required.
-No runtime dependencies, WSL, provider setup or API key handling.
+CLI local en Node (`rsc-vibe`) para delegar tareas desde proyectos gobernados por **RSC** hacia el binario oficial **Mistral Vibe** en Windows 11 / PowerShell 7, con límites de seguridad, concurrencia acotada, consulta de modelos en vivo y selección de modelo por corrida.
+
+Requisitos: **Node >= 18**, **Git for Windows** y **`vibe`** instalado y autenticado. Sin dependencias externas de runtime, sin WSL y sin almacenar API keys en el repositorio.
+
+---
+
+## Instalación en un solo comando
+
+Desde la carpeta del repositorio clonado (o directamente desde GitHub):
 
 ```powershell
-node ./bin/cli.js init
-node ./bin/cli.js doctor
-node ./bin/cli.js status
-node ./bin/cli.js dispatch --task issue-42 --tier balanced --prompt "Implement the approved spec" --max-turns 8
-# Clean, committed Git root required for a new isolated branch:
-node ./bin/cli.js dispatch --task review-42 --tier heavy --prompt "Analyze the approved spec" --worktree feat/review-42
+# Opción 1: desde tu copia local (deja el comando global `rsc-vibe` listo)
+npm link
+
+# Opción 2: directamente desde GitHub en un solo comando
+npm install -g git+https://github.com/<tu-usuario>/rsc-vibe-bridge.git
 ```
 
-The package declares the `rsc-vibe` bin. After installing/linking this local package
-with npm, the same commands work as `rsc-vibe init`, etc. This project does not
-install itself globally. `npm pack --ignore-scripts` creates an installable archive.
+*(Sin instalación global, todos los comandos funcionan igualmente con `node <ruta-al-repo>\bin\cli.js <comando>`.)*
 
-## Routing and execution
+---
 
-- heavy: `mistral-large-4`, architect profile (read only).
-- balanced: `zai-glm-5-3-flash`, developer profile.
-- light: `mistral-small-2603`, tester profile (read only).
-- debug: `zai-glm-5-3`, debugger profile.
+## Activar en cualquier proyecto RSC (un solo comando)
 
-Reviewer is also available as a supplied Vibe profile. Models are recorded in
-`01-TOOLS/vibe-bridge/models.json` and explicitly declared in the project TOML using
-the existing Mistral provider. Presets do not prove account entitlement. Vibe's export
-reports the resolved model; without export evidence it remains null. A different
-model adds concerns and never hides BLOCKED or NEEDS_CONTEXT. No automatic retry.
+Desde la raíz de cualquier proyecto que tenga `.rsc.json`:
 
-Dispatch validates the installed help before inference. It runs foreground using
-`spawn` with `shell:false`, separate arguments, ignored stdin, JSON output, explicit
-model and turns. Default 8, hard ceiling 20 turns. Vibe's native time limit is 900s
-when available; a 930s parent watchdog interrupts a stuck root process. Ctrl+C also
-interrupts the root and records a blocked run. This is a turn/time budget, not a
-guaranteed monetary quota: provider pricing and account limits remain Vibe's concern.
-
-Only read_file, grep, write_file and edit are exposed. Architect/reviewer/tester
-deny writes. Developer/debugger deny RSC, Git and AGENTS.md writes. Subagents,
-background processes, MCP and connectors are disabled. Shell tools are unavailable,
-so an agent must report tests it cannot execute as NEEDS_CONTEXT. Run tests through
-the owning developer terminal. This restriction keeps the two managed sessions from
-spawning additional Vibe instances. No --auto-approve or persistent trust changes.
-`--trust` applies to the explicitly dispatched directory for that invocation only.
-
-These profiles are not an OS sandbox. Codex RSC hooks are not automatically Vibe
-hooks. External Vibe launches and other Windows accounts are outside the ceiling.
-Treat logs and prompts as private project data. The bridge never reads auth stores.
-
-## Safe initialization and preserved configuration
-
-`init` reads `.rsc.json.catalogVersion`, creates project config, five profiles,
-model mappings and tool docs, and reports every created/skipped path. Existing files
-are never overwritten. Junction/symlink ancestors are rejected. It never writes
-`.rsc/`, `.rsc.json` or AGENTS.md. A missing skill registry is reported in instructions,
-not silently generated. Dispatch refuses modified/missing selected bridge profiles
-or project config, so a skipped permissive existing file cannot disable protections.
-Back up your existing config/profile and explicitly install the supplied templates
-to resolve this. Preserve an already configured Mistral provider; do not copy keys.
-
-## State, logs and crash recovery
-
-Global per-user state is `%LOCALAPPDATA%\RscVibeBridge\state.json`; logs are under
-`runs\<UUID>\stdout.log`, `stderr.log`, Vibe's `export.json`/session journal, and a
-permanent bridge `result.json`. Recent history is bounded at 100; per-run results
-are retained. State uses an exclusive mkdir lock, fsync and atomic rename. It
-includes run UUID, task, owner/child PIDs, project, requested/effective model,
-worktree, duration, exit code and final status.
-
-Two reservations maximum across PowerShell terminals. Duplicate active task IDs
-within one project are refused. Reservations without a known child PID stay occupied
-after a crash: this deliberately favors safety over availability. A recorded child
-is reclaimed only when both owner and child are dead. PID reuse conservatively keeps
-a slot occupied. There is no age-based stale-lock deletion.
-
-If a lock or ambiguous reservation survives a crash: close dispatch terminals,
-inspect `state.lock/owner.json`, state.json and actual Vibe processes in Task Manager,
-and verify no run is alive. Back up state first. Only then remove the abandoned lock
-or reconcile an ambiguous reservation. Never remove a lock based only on elapsed time.
-Status can block on such a lock; doctor remains usable because it does not acquire it.
-
-## Worktrees and rollback
-
-`--worktree feat/name` creates a fresh branch at current HEAD under a hashed
-`.worktrees/` directory. The repository must be clean and committed. Main/master
-are refused; ordinary dispatch also refuses the configured default branch.
-Worktrees remain after dispatch so their work is reviewable. No auto-merge or deletion.
-Keep `.worktrees/` ignored in consuming projects.
-
-Explicit safe cleanup is available as an exported local API:
-
-```js
-import { cleanupWorktree } from './lib/worktree.js';
-// Use the worktree object from the completed run in status/state.
-await cleanupWorktree(process.cwd(), run.worktree);
+```powershell
+rsc-vibe init
 ```
 
-Cleanup validates the hashed path, Git registration and clean status and refuses
-unmerged commits. It never uses force or deletes the branch. Rollback: remove only
-the paths init reported after reviewing local edits; keep user backups and results.
-Removing the bridge leaves original RSC intact.
+Esto lee `catalogVersion` de `.rsc.json` y crea sin sobrescribir archivos existentes:
+- `.vibe/config.toml` (capa local segura sin credenciales).
+- Los 5 perfiles acotados en `.vibe/agents/` (`architect`, `developer`, `debugger`, `reviewer`, `tester`).
+- `01-TOOLS/vibe-bridge/models.json`, `README.md` y `.gitignore`.
 
-## Verification
+Verifica la instalación sin consumir tokens:
 
-`npm test` uses native node:test, fake Vibe child processes, real temporary filesystem
-state, racing Node workers and a disposable Git repository. It never calls inference.
-`npm run check` checks JavaScript syntax. `node ./bin/cli.js doctor` checks Windows,
-versions, required flags, governance and Git/local config. Doctor deliberately does
-not prove authentication or model entitlement and reports DONE_WITH_CONCERNS for
-that untested boundary. No tests require Python; installed Vibe Python models were
-used once during development to validate the TOML schema without a session.
+```powershell
+rsc-vibe doctor
+```
+
+> **Si el proyecto ya tenía `.vibe/agents/developer.toml` generado por RSC:** `init` lo omite para no sobrescribirlo y `dispatch` bloqueará el envío por seguridad hasta que lo respaldes e instales la plantilla del bridge (respaldando el archivo previo y re-ejecutando `rsc-vibe init`).
+
+---
+
+## Uso diario
+
+### 1. Consultar modelos disponibles en tiempo real
+Define tu API key solo como variable de entorno de usuario (nunca en el repositorio ni en logs):
+
+```powershell
+[Environment]::SetEnvironmentVariable("MISTRAL_API_KEY", "<tu-clave>", "User")
+```
+
+Consulta los modelos activos en tu cuenta de Mistral:
+
+```powershell
+rsc-vibe models
+```
+
+### 2. Despachar una tarea a Vibe
+```powershell
+# Usando el modelo por defecto del tier
+rsc-vibe dispatch --task issue-42 --tier balanced --prompt "Implementa el plan aprobado" --max-turns 6
+
+# Eligiendo un modelo específico en tiempo real (conservando el perfil de seguridad del tier)
+rsc-vibe dispatch --task issue-42 --tier balanced --model mistral-large-4 --prompt "Implementa el plan aprobado" --max-turns 6
+
+# En un worktree aislado nuevo (requiere árbol Git limpio y commiteado)
+rsc-vibe dispatch --task review-42 --tier heavy --prompt "Analiza la especificación" --worktree feat/review-42
+```
+
+### 3. Consultar estado e historial
+```powershell
+rsc-vibe status
+```
+
+---
+
+## Routing por tier y modelos extra
+
+| Tier | Modelo por defecto | Perfil Vibe | Permisos |
+| --- | --- | --- | --- |
+| `heavy` | `mistral-large-4` | `architect` | Solo lectura |
+| `balanced` | `zai-glm-5-3-flash` | `developer` | Lectura y escritura acotada |
+| `light` | `mistral-small-2603` | `tester` | Solo lectura |
+| `debug` | `zai-glm-5-3` | `debugger` | Lectura y escritura acotada |
+
+Con `--model <alias>` puedes sobreescribir el modelo del tier en cada corrida. Para usar modelos adicionales devueltos por `rsc-vibe models` (por ejemplo `deepseek-v4-1-flash-1017`), decláralos una sola vez dentro del arreglo `models = [ ... ]` de tu `~/.vibe/config.toml` global:
+
+```toml
+models = [
+    { name = "deepseek-v4-1-flash-1017", alias = "deepseek-v4-1-flash-1017", provider = "mistral" },
+]
+```
+
+---
+
+## Seguridad y límites
+
+- **Herramientas acotadas**: solo se habilitan `read_file`, `grep`, `write_file` y `edit`. `bash`/shell, subagentes, procesos en segundo plano y MCP quedan deshabilitados; el coordinador siempre ejecuta las pruebas.
+- **Protección de gobierno**: `developer` y `debugger` no pueden escribir en `.rsc/`, `.git` ni `AGENTS.md`. `dispatch` rechaza perfiles o `config.toml` alterados y bloquea despachos directos sobre `main`/`master`.
+- **Concurrencia y presupuesto**: máximo **2** ejecuciones simultáneas globales por usuario, límite de turnos (por defecto 8, máximo 20) y watchdog de tiempo (900–930 s). Nunca usa `--auto-approve`.
+- **Privacidad de credenciales**: `models` lee únicamente `process.env.MISTRAL_API_KEY` en memoria y nunca la escribe en salidas, logs ni errores. El bridge nunca accede al keyring del sistema.
+
+---
+
+## Estado, logs y recuperación
+
+- Estado global por usuario: `%LOCALAPPDATA%\RscVibeBridge\state.json` (con bloqueo exclusivo y renombrado atómico).
+- Logs por corrida: `%LOCALAPPDATA%\RscVibeBridge\runs\<UUID>\` (`stdout.log`, `stderr.log`, `export.json`, `result.json`).
+- Historial acotado a 100 entradas en `state.json`, conservando `result.json` por corrida.
+
+---
+
+## Verificación del bridge
+
+```powershell
+npm run check
+npm test
+```
+
+Las pruebas usan `node:test` nativo con procesos Vibe simulados, estado temporal en disco y repositorios Git desechables, sin consumir inferencia.
